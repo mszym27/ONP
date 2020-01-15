@@ -4,16 +4,16 @@ namespace ONP
 {
     class Stack
     {
-        private const int stackBottom = -1;
+        protected const int stackBottomIndex = -1;
 
         public int head; // wskazuje na szczytowy element stosu
-        private char[] elements;
+        protected char[] elements;
 
         public Stack(int maxLength)
         {
             elements = new char[maxLength];
 
-            head = stackBottom;
+            head = stackBottomIndex;
         }
 
         public void Push(char element)
@@ -41,17 +41,27 @@ namespace ONP
 
         public char Pop()
         {
+            if (this.IsEmpty())
+            {
+                throw new StackIsEmptyException();
+            }
+
             return elements[head--];
         }
 
         public char Peek()
         {
-            return this.IsEmpty()? '|' : elements[head];
+            if (this.IsEmpty())
+            {
+                throw new StackIsEmptyException();
+            }
+
+            return elements[head];
         }
 
         public bool IsEmpty()
         {
-            return (head == stackBottom);
+            return (head == stackBottomIndex);
         }
 
         //public char[] popAll()
