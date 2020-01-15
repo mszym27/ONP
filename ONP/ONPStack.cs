@@ -4,10 +4,7 @@ namespace ONP
 {
     class ONPStack : Stack
     {
-        private static readonly char stackBottom = '|';
-
         public static readonly Dictionary<char, int> OperatorPriority = new Dictionary<char, int>() {
-            { stackBottom, 0 }, // dno stosu - symbol dodany sztucznie na potrzeby sprawdzenia ponizej
             { '+', 1 },
             { '-', 1 },
             { '*', 2 },
@@ -20,20 +17,6 @@ namespace ONP
         {
         }
 
-        // specjalna metoda potrzebna do konwersji 
-        // na ONP - algorytm wymaga mozliwosci 
-        // przejrzenia stosu w poszukiwaniu elementu o nizszym priorytecie
-        // nawiasu otwierajacego lub dna stosu
-        //public void checkSignsTillBottom(char element)
-        //{
-        //    // z natury zadania wynika ze nie ma ryzyka
-        //    // ze element taki pojawi sie na koncu stosu - parametrem
-        //    // w praktyce moze byc tylko nawias otwierajacy
-        //    for (uint i = head; i > 0; i--)
-        //    {
-        //        elements[i + 1] = elements[i];
-        //    }
-
         //specjalna metoda potrzebna do konwersji
         //na ONP - algorytm wymaga mozliwosci
         //przejrzenia stosu w poszukiwaniu elementu o nizszym priorytecie
@@ -42,7 +25,7 @@ namespace ONP
         {
             for (int i = head; i > stackBottomIndex; i--)
             {
-                if(OperatorPriority[element] > OperatorPriority[this.PeekNth(i)])
+                if(OperatorPriority[element] < OperatorPriority[this.PeekNth(i)])
                 {
                     return true;
                 }
@@ -74,7 +57,7 @@ namespace ONP
         {
             if (this.IsEmpty())
             {
-                return stackBottom;
+                throw new StackIsEmptyException();
             }
             else
             {
