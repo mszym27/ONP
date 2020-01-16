@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Consts.cs" />
     <Compile Include="ONPStack.cs" />
     <Compile Include="StackIsEmptyException.cs" />
     <Compile Include="Stack.cs" />

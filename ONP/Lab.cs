@@ -11,9 +11,7 @@ namespace ONP
             Console.WriteLine("Lingwistyka matematyczna zadanie 4 - ONP");
             Console.WriteLine("----------------------------------------");
 
-            var input = "((20*50+10)/20)";
-            //  var input = "(2+1)*3-4*(7+4)"; // wynik: 2 1 + 3 * 4 7 4 + * -
-            //Console.WriteLine("powinno byc" + "21+3*474+*-"); // TODO: co z liczbami ktore maja kilka cyfr?
+            var input = "((2*5+1)/2)";
 
             var inputLength = input.Length;
 
@@ -34,7 +32,7 @@ namespace ONP
                     // po napotkaniu cyfr uznaje sie je za czesc liczby
                     var j = i + 1;
 
-                    var wholeNumberToConcat = "" + character;
+                    var wholeNumberToConcat = character.ToString();
 
                     for (; j < inputLength; j++)
                     {
@@ -54,7 +52,7 @@ namespace ONP
 
                     i = j;
 
-                    output += wholeNumberToConcat;
+                    output += wholeNumberToConcat + Consts.SIGN_SEPARATOR;
                 }
                 else if (character == '(')
                 {
@@ -75,10 +73,8 @@ namespace ONP
                 }
             }
 
-            Console.WriteLine(output);
-            Console.WriteLine("powinno byc");
-            Console.WriteLine("2 5 * 1 + 2 /"); // TODO: dodanie spacji pomiedzy znakami
-
+            Console.WriteLine("Wejscie: " + input);
+            Console.WriteLine("Po konwersji na ONP: " + output);
 
             // pauzuje program
             Console.ReadLine();

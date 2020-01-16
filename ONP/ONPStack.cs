@@ -4,15 +4,6 @@ namespace ONP
 {
     class ONPStack : Stack
     {
-        public static readonly Dictionary<char, int> OperatorPriority = new Dictionary<char, int>() {
-            { '+', 1 },
-            { '-', 1 },
-            { '*', 2 },
-            { '/', 2 },
-            { '(', 3 },
-            { ')', 3 },
-        };
-
         public ONPStack(int maxLength) : base(maxLength)
         {
         }
@@ -25,7 +16,7 @@ namespace ONP
         {
             for (int i = head; i > stackBottomIndex; i--)
             {
-                if(OperatorPriority[element] < OperatorPriority[this.PeekNth(i)])
+                if(Consts.OP_PRIORITY[element] < Consts.OP_PRIORITY[this.PeekNth(i)])
                 {
                     return true;
                 }
@@ -47,7 +38,7 @@ namespace ONP
                     break;
                 }
 
-                result += popped;
+                result += popped + Consts.SIGN_SEPARATOR;
             }
 
             return result;
