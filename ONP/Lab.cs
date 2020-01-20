@@ -8,9 +8,6 @@ namespace ONP
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Lingwistyka matematyczna zadanie 4 - ONP");
-            Console.WriteLine("----------------------------------------");
-
             var input = "((2*5+1)/2)";
 
             var inputLength = input.Length;
@@ -72,6 +69,8 @@ namespace ONP
                     stack.Push(character);
                 }
             }
+
+            stack.PopTillStopSign();
 
             Console.WriteLine("Wejscie: " + input);
             Console.WriteLine("Po konwersji na ONP: " + output);
